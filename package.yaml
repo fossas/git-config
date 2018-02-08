@@ -1,0 +1,35 @@
+name: git-config
+version: '0.1.0'
+description: A simple parser for Git configuration files.
+category: Library,Git
+author: Fernando Freire
+maintainer: dogonthehorizon@gmail.com
+copyright: 2018 Fernando Freire
+license: BSD3
+github: dogonthehorizon/git-config
+
+extra-source-files:
+  - README.md
+
+dependencies:
+  - base >=4.7 && <5
+default-extensions:
+  - OverloadedStrings
+ghc-options:
+  - -Wall
+  - -fno-warn-partial-type-signatures
+  - -fno-warn-name-shadowing
+  - -fwarn-tabs
+  - -fwarn-unused-imports
+  - -fwarn-missing-signatures
+  - -fwarn-incomplete-patterns
+
+
+library:
+  source-dirs: src
+  dependencies:
+    - unordered-containers
+    - megaparsec
+    - text
+  exposed-modules:
+    - Text.GitConfig.Parser

@@ -1,0 +1,43 @@
+-- This file has been generated from package.yaml by hpack version 0.20.0.
+--
+-- see: https://github.com/sol/hpack
+--
+-- hash: ac108a58514a8f1073c5017a7590bd596fb9be994fbe91944531c8f4a60a2f55
+
+name:           git-config
+version:        0.1.0
+description:    A simple parser for Git configuration files.
+category:       Library,Git
+homepage:       https://github.com/dogonthehorizon/git-config#readme
+bug-reports:    https://github.com/dogonthehorizon/git-config/issues
+author:         Fernando Freire
+maintainer:     dogonthehorizon@gmail.com
+copyright:      2018 Fernando Freire
+license:        BSD3
+license-file:   LICENSE
+build-type:     Simple
+cabal-version:  >= 1.10
+
+extra-source-files:
+    README.md
+
+source-repository head
+  type: git
+  location: https://github.com/dogonthehorizon/git-config
+
+library
+  hs-source-dirs:
+      src
+  default-extensions: OverloadedStrings
+  ghc-options: -Wall -fno-warn-partial-type-signatures -fno-warn-name-shadowing -fwarn-tabs -fwarn-unused-imports -fwarn-missing-signatures -fwarn-incomplete-patterns
+  build-depends:
+      base >=4.7 && <5
+    , megaparsec
+    , text
+    , unordered-containers
+  exposed-modules:
+      Text.GitConfig.Parser
+  other-modules:
+      Lib
+      Paths_git_config
+  default-language: Haskell2010
