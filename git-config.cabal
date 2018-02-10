@@ -2,7 +2,7 @@
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: ac108a58514a8f1073c5017a7590bd596fb9be994fbe91944531c8f4a60a2f55
+-- hash: cf920a3338d69d3c4ee81b5da842cdcdb3766fc8d53b80474ca045d15275353c
 
 name:           git-config
 version:        0.1.0
@@ -38,6 +38,5 @@ library
   exposed-modules:
       Text.GitConfig.Parser
   other-modules:
-      Lib
       Paths_git_config
   default-language: Haskell2010
