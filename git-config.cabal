@@ -2,10 +2,11 @@
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: cf920a3338d69d3c4ee81b5da842cdcdb3766fc8d53b80474ca045d15275353c
+-- hash: fb5c07cf43dc89248b94d41d1aaaf05bd420ac051d6c4a5acdfed786eb23fbfc
 
 name:           git-config
 version:        0.1.0
+synopsis:       A simple parser for Git configuration files.
 description:    A simple parser for Git configuration files.
 category:       Library,Git
 homepage:       https://github.com/dogonthehorizon/git-config#readme
@@ -38,5 +39,29 @@ library
   exposed-modules:
       Text.GitConfig.Parser
   other-modules:
+      Paths_git_config
+  default-language: Haskell2010
+
+test-suite git-config-test
+  type: exitcode-stdio-1.0
+  main-is: Tasty.hs
+  hs-source-dirs:
+      test
+  default-extensions: OverloadedStrings
+  ghc-options: -Wall -fno-warn-partial-type-signatures -fno-warn-name-shadowing -fwarn-tabs -fwarn-unused-imports -fwarn-missing-signatures -fwarn-incomplete-patterns -threaded -rtsopts -with-rtsopts=-N
+  build-depends:
+      base >=4.7 && <5
+    , git-config
+    , megaparsec
+    , smallcheck
+    , smallcheck-series
+    , tasty
+    , tasty-discover
+    , tasty-hunit
+    , tasty-smallcheck
+    , tasty-travis
+    , text
+  other-modules:
+      Text.GitConfig.ParserTest
       Paths_git_config
   default-language: Haskell2010

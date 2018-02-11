@@ -17,18 +17,18 @@ hlint_install:
 	@stack install hlint
 
 hlint: hlint_install
-	@hlint src/
+	@hlint src/ test/
 
 hlint_apply_refact: hlint_install
 	@stack install apply-refact
 
 HLINT=hlint --refactor --refactor-options -i {} \;
 hlint_refactor: hlint_apply_refact
-	@find src/ -name "*.hs" -exec $(HLINT)
+	@find src/ test/ -name "*.hs" -exec $(HLINT)
 
 stylish_haskell_install:
 	@stack install stylish-haskell
 
 STYLISH=stylish-haskell -i {} \;
 stylish_haskell_check: stylish_haskell_install
-	@find src/ -name "*.hs" -exec $(STYLISH) && git diff --exit-code
+	@find src/ test/ -name "*.hs" -exec $(STYLISH) && git diff --exit-code

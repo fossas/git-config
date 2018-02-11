@@ -1,6 +1,7 @@
 name: git-config
 version: '0.1.0'
 description: A simple parser for Git configuration files.
+synopsis: A simple parser for Git configuration files.
 category: Library,Git
 author: Fernando Freire
 maintainer: dogonthehorizon@gmail.com
@@ -33,3 +34,23 @@ library:
     - text
   exposed-modules:
     - Text.GitConfig.Parser
+
+tests:
+  git-config-test:
+    main: Tasty.hs
+    source-dirs: test
+    ghc-options:
+      - -threaded
+      - -rtsopts
+      - -with-rtsopts=-N
+    dependencies:
+      - git-config
+      - megaparsec
+      - tasty
+      - tasty-discover
+      - tasty-hunit
+      - tasty-smallcheck
+      - tasty-travis
+      - text
+      - smallcheck
+      - smallcheck-series
