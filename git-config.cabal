@@ -2,7 +2,7 @@
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: fb5c07cf43dc89248b94d41d1aaaf05bd420ac051d6c4a5acdfed786eb23fbfc
+-- hash: a962dda9c6b4379b1b5d4765dda79da1bf390d257ad9b5c769528ff42ec27458
 
 name:           git-config
 version:        0.1.0
@@ -61,6 +61,7 @@ test-suite git-config-test
     , tasty-smallcheck
     , tasty-travis
     , text
+    , unordered-containers
   other-modules:
       Text.GitConfig.ParserTest
       Paths_git_config

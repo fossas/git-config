@@ -50,7 +50,7 @@ import           Data.Text                  (Text)
 import qualified Data.Text                  as T
 import           Data.Void                  (Void)
 import           Text.Megaparsec            (Parsec, between, eof, many, sepBy,
-                                             some, try, (<?>), (<|>))
+                                             some, (<?>), (<|>))
 import           Text.Megaparsec.Char       (alphaNumChar, char, eol,
                                              letterChar, printChar, satisfy,
                                              space1)
@@ -128,7 +128,7 @@ sectionHeader = brackets sectionName
 --  The variable names are case-insensitive, allow only alphanumeric
 --  characters and -, and must start with an alphabetic character.
 variableName :: Parser Text
-variableName = fmap (T.toLower . T.pack) . lexeme . try $ p
+variableName = fmap (T.toLower . T.pack) . lexeme $ p
   where
     p = (:) <$> letterChar <*> many (alphaNumChar <|> char '-')
 

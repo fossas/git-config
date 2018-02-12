@@ -9,6 +9,9 @@ build: clean
 watch: build
 	@$(STACK_BUILD) --test --coverage --haddock --file-watch
 
+test: clean
+	@stack test
+
 clean:
 	@stack clean && rm *.cabal
 

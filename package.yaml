@@ -46,11 +46,12 @@ tests:
     dependencies:
       - git-config
       - megaparsec
+      - smallcheck
+      - smallcheck-series
       - tasty
       - tasty-discover
       - tasty-hunit
       - tasty-smallcheck
       - tasty-travis
       - text
-      - smallcheck
-      - smallcheck-series
+      - unordered-containers
