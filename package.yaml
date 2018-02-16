@@ -1,7 +1,23 @@
 name: git-config
 version: '0.1.0'
-description: A simple parser for Git configuration files.
 synopsis: A simple parser for Git configuration files.
+description: |
+  git-config is a simple 'megaparsec' parser for Git configuration files.
+
+  It aims to provide the simplest API possible for parsing Git configuration
+  files so that you can get to whatever it was you were doing.
+
+  A sample of this library in use:
+
+  > import qualified Data.Text.IO as TIO
+  > import Text.GitConfig.Parser (parseConfig)
+  >
+  > main :: IO ()
+  > main = do
+  >   file <- TIO.readFile ".git/config"
+  >   case parseConfig file of
+  >     Right conf ->
+  >       print conf
 category: Library,Git
 author: Fernando Freire
 maintainer: dogonthehorizon@gmail.com

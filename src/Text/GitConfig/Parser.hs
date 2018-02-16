@@ -38,7 +38,8 @@ module Text.GitConfig.Parser (
   variableValue,
   mapping,
   section,
-  config
+  config,
+  parseConfig
 ) where
 
 import           Control.Applicative        (empty)
@@ -49,13 +50,15 @@ import qualified Data.HashMap.Strict        as M
 import           Data.Text                  (Text)
 import qualified Data.Text                  as T
 import           Data.Void                  (Void)
-import           Text.Megaparsec            (Parsec, between, eof, many, sepBy,
-                                             some, (<?>), (<|>))
+import           Text.Megaparsec            (ParseError, Parsec, Token, between,
+                                             eof, many, parse, sepBy, some,
+                                             (<?>), (<|>))
 import           Text.Megaparsec.Char       (alphaNumChar, char, eol,
                                              letterChar, printChar, satisfy,
                                              space1)
 import qualified Text.Megaparsec.Char.Lexer as Lexer
 
+type GitConfigError = ParseError (Token Text) Void
 type Parser = Parsec Void Text
 
 data Section = Section [Text] (HashMap Text Text)
@@ -165,3 +168,6 @@ section = do
 -- | Parse a complete git config.
 config :: Parser GitConfig
 config = between spaceConsumer eof $ many section
+
+parseConfig :: Text -> Either GitConfigError GitConfig
+parseConfig = parse config "noSrc"

@@ -2,12 +2,27 @@
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: a962dda9c6b4379b1b5d4765dda79da1bf390d257ad9b5c769528ff42ec27458
+-- hash: 61a8d8d4516720b4def60b163c2a76d8e819827aa17f1edbe115b50258866169
 
 name:           git-config
 version:        0.1.0
 synopsis:       A simple parser for Git configuration files.
-description:    A simple parser for Git configuration files.
+description:    git-config is a simple 'megaparsec' parser for Git configuration files.
+                .
+                It aims to provide the simplest API possible for parsing Git configuration
+                files so that you can get to whatever it was you were doing.
+                .
+                A sample of this library in use:
+                .
+                > import qualified Data.Text.IO as TIO
+                > import Text.GitConfig.Parser (parseConfig)
+                >
+                > main :: IO ()
+                > main = do
+                >   file <- TIO.readFile ".git/config"
+                >   case parseConfig file of
+                >     Right conf ->
+                >       print conf
 category:       Library,Git
 homepage:       https://github.com/dogonthehorizon/git-config#readme
 bug-reports:    https://github.com/dogonthehorizon/git-config/issues
