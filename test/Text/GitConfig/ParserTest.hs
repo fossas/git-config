@@ -129,3 +129,13 @@ test_section = testGroup
             assertEqual ""
               (P.Section ["core", "subsec"] (M.fromList [("foo", "bar")])) p
     ]
+
+test_config :: TestTree
+test_config = testGroup
+  "config parses an entire git configuration"
+  [
+    testCase "valid" $
+      assertSuccess $ parse P.config "" "[core]\nfoo=bar\n[remote \"origin\"]\nkey=val\n",
+    testCase "invalid mapping without section" $
+      assertFail $ parse P.config "" "foo=bar\n[remote \"origin\"]\nkey=val\n"
+  ]
