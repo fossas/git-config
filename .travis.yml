@@ -1,30 +1,28 @@
-# Use new container infrastructure to enable caching
 sudo: false
-
-# Do not choose a language; we provide our own build tools.
 language: generic
-
-# Caching so the next build will be fast too.
 cache:
   directories:
   - $HOME/.stack
-
-# Ensure necessary system libraries are present
 addons:
   apt:
     packages:
-      - libgmp-dev
-
+    - libgmp-dev
 before_install:
-# Download and unpack the stack executable
 - mkdir -p ~/.local/bin
 - export PATH=$HOME/.local/bin:$PATH
-- travis_retry curl -L https://www.stackage.org/stack/linux-x86_64 | tar xz --wildcards --strip-components=1 -C ~/.local/bin '*/stack'
-
+- travis_retry curl -L https://www.stackage.org/stack/linux-x86_64 | tar xz --wildcards
+  --strip-components=1 -C ~/.local/bin '*/stack'
 install:
-# Build dependencies
 - stack --no-terminal --install-ghc test --only-dependencies
-
 script:
-# Build the package, its tests, and its docs and run the tests
 - stack --no-terminal test --haddock --no-haddock-deps
+env:
+  global:
+  - secure: wIsqkoRgWsUaWDtZFKqAqXx6L9H+QowDuhnwRn37V9VHsrajzeLwrEH2gBsf4titKLmgg4PAipkwC2tpusas/oPXcAKtAaF5N2bEV73Jag/a2s29bt7bKAYHZCk1wfy+ZSFB+yiF4eaQhO+8zKgi+lg7cchfTtCKErtacs5Q0aP1EEMopnD8LEq8MtWKaMcrVj5Eb3v9KYgXi1WVYNkztqZxx5RSDhH5katCz9B7pEML580r6RGuILPy0MKhkblidm0hcRHYrA3bYyu6BvM2DpZcjb+6i/kJUp5Fu9OZG63IQQnQ/r0pzxv2dNrViCobg44An65TC0T/nNYTiGg3bkCmjEw/N+TJDDacG2PHA+nG7Ji+Yfm0SRuKnCZ0aPQYjbMMG7zEb1mOWrMQ1/lDONwGjScMuFTkrRFNQiR6Ujsw4e9t3EWJ6bVf2GJnPkYuCiGJ3VJrJIxHGSP5JbnDgVPWzQ+vab6ImcY1U6AL2stGszfBERDcIJZ8KyJL2MWKFNlyFb1SZdRqB5Ka9PJ7ehBo3ZA0uDrsdpSxjNEzmz6qK+aOo71O4sQSzeoyxyGrpYCXIzwCbtdRedyaAXCa4IzOgrRYo4sgFzKZKIFLr+ZNYAFuAbLHLrqdA9SskBpTwR5wFvxNEetDwvjQdMyc/EPiuiW0/5Tsg7E0RpcS6SE=
+  - secure: Bhan/O4awnLzByOwyaEtgV8fsOHqCriZlZXOvWVts+0tNJYxf2RHBXQDak3zYSmg+A5Lbe/iOKfEnq0ABFZWwt83pGd9TTuWphApaL3uIXWFzfsLr+63tK/fnlNTqu0feTGMpMZI7MZ6OiWMhKGwWsq/3LidCm/iOHTV1neX9jcXVKCRhIxl7SPiZHTgwQMM0SZO1kG1DWZXIDyUsQsUv9FV2smPKdVkO5ORMdb0Lfxlm64dKwk7W1QzBJFjCvRsoS14G/Y4wF3iGR2npvyZAG6jCO5Rqu1d/teyVp46d4v7cX9RdygIjaXnRj0beGghytfDLV5tC2qZeFmfMEL5Nc2r9KStYzLnwEZoM3Ali4jzxJys5rG+CKVBMg5FqL2LzWtwTDN+pdhNADIVKDxfZRNMO50KfHBxu/KKL0PwBpAw4eYsHwKKxLdyV9zH9nZq6xR/pJ5Wz+jLEb5QyKAtk6vqTrVG2mR+JGaRcQflj/JPcGOTY+M8JAgOtZWwzWPJDh4DhHUyPT5tVSL4OrWUhOxaxblw/Qnk3loknkaqDXjbRhDY5djRYI1ZcESrwQMZ7/EZW5lORW1Q3p853iRgfDKSVrinduwI/cUev9YbDisTcFfIMbT29l/MUKwW2yGNPcM9ltEyaoeXF1fPkBbo88Rr6pYBZG8ATujiycmiJ4I=
+deploy:
+  - provider: script
+    script: bash scripts/deploy.sh
+    on:
+      repo: dogonthehorizon/git-config
+      tags: true
