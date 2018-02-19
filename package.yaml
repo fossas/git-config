@@ -1,6 +1,6 @@
 name: git-config
-version: '0.1.0'
-synopsis: A simple parser for Git configuration files.
+version: '0.1.1'
+synopsis: A simple parser for Git configuration files
 description: |
   git-config is a simple 'megaparsec' parser for Git configuration files.
 
@@ -20,7 +20,7 @@ description: |
   >       print conf
 category: Library,Git
 author: Fernando Freire
-maintainer: dogonthehorizon@gmail.com
+maintainer: Fernando Freire <dogonthehorizon@gmail.com>
 copyright: 2018 Fernando Freire
 license: BSD3
 github: dogonthehorizon/git-config

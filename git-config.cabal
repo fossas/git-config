@@ -2,11 +2,11 @@
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 61a8d8d4516720b4def60b163c2a76d8e819827aa17f1edbe115b50258866169
+-- hash: 0aca7139a8c14002852a9afd277d50d4d9a76b6740a53a8bff57f37d8d70c611
 
 name:           git-config
-version:        0.1.0
-synopsis:       A simple parser for Git configuration files.
+version:        0.1.1
+synopsis:       A simple parser for Git configuration files
 description:    git-config is a simple 'megaparsec' parser for Git configuration files.
                 .
                 It aims to provide the simplest API possible for parsing Git configuration
@@ -27,7 +27,7 @@ category:       Library,Git
 homepage:       https://github.com/dogonthehorizon/git-config#readme
 bug-reports:    https://github.com/dogonthehorizon/git-config/issues
 author:         Fernando Freire
-maintainer:     dogonthehorizon@gmail.com
+maintainer:     Fernando Freire <dogonthehorizon@gmail.com>
 copyright:      2018 Fernando Freire
 license:        BSD3
 license-file:   LICENSE
