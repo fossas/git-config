@@ -153,8 +153,9 @@ variableValue = T.pack <$> between spaceConsumer eol (many printChar)
 mapping :: Parser (Text, Text)
 mapping = do
   varName <- variableName
-  void (symbol "=")
-  varValue <- variableValue
+  varValue <- do void (symbol "=")
+                 variableValue <|> pure ""
+              <|> pure "true"
   return (varName, varValue)
 
 -- | Parse a complete git config section.

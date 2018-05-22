@@ -110,8 +110,16 @@ test_mapping = testGroup
     [
       testCase "valid" $
         assertSuccess $ parse P.mapping "" "key = value\n",
-      testCase "temporarily invalid boolean switch" $
-        assertFail $ parse P.mapping "" "key\n"
+      testCase "empty '= value' equals boolean true" $
+        case parse P.mapping "" "key\n" of
+          Left _ -> assertFailure ""
+          Right (_,v) ->
+            assertEqual "" "true" v
+      , testCase "empty value equals empty string" $
+          case parse P.mapping "" "key = \n" of
+            Left _ -> assertFailure ""
+            Right (_,v) ->
+              assertEqual "" "" v
     ]
 
 test_section :: TestTree
