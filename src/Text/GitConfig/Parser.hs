@@ -50,15 +50,15 @@ import qualified Data.HashMap.Strict        as M
 import           Data.Text                  (Text)
 import qualified Data.Text                  as T
 import           Data.Void                  (Void)
-import           Text.Megaparsec            (ParseError, Parsec, Token, between,
-                                             eof, many, parse, sepBy, some,
+import           Text.Megaparsec            (ParseErrorBundle, Parsec, between,
+                                             eof, many, parse, satisfy, sepBy, some,
                                              (<?>), (<|>))
 import           Text.Megaparsec.Char       (alphaNumChar, char, eol,
-                                             letterChar, printChar, satisfy,
+                                             letterChar, printChar,
                                              space1)
 import qualified Text.Megaparsec.Char.Lexer as Lexer
 
-type GitConfigError = ParseError (Token Text) Void
+type GitConfigError = ParseErrorBundle Text Void
 type Parser = Parsec Void Text
 
 data Section = Section [Text] (HashMap Text Text)
