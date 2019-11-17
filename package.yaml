@@ -1,5 +1,5 @@
 name: git-config
-version: '0.1.1'
+version: '0.1.2'
 synopsis: A simple parser for Git configuration files
 description: |
   git-config is a simple 'megaparsec' parser for Git configuration files.
@@ -46,13 +46,14 @@ library:
   source-dirs: src
   dependencies:
     - unordered-containers
-    - megaparsec
+    - megaparsec >=7 && < 9
     - text
   exposed-modules:
     - Text.GitConfig.Parser
 
 tests:
   git-config-test:
+    build-tools: tasty-discover:tasty-discover ^>=4.2.1
     main: Tasty.hs
     source-dirs: test
     ghc-options:
